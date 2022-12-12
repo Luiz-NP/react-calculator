@@ -2,18 +2,10 @@ export function Button({ value, state }) {
 
     function changeValue() {
         state(prev => {
-            if (prev === "") return "0";
-            const valueToArray = prev?.toString().split('');
-            const valueLength = valueToArray?.length;
-            const lastValue = valueToArray[valueLength-1];
-            const operators = [".", "+", "-", "*", "/", "%"];            
-
-            if (valueLength > 10 && value !== "C" && typeof value !== "object") return prev;
             if (prev === "0") prev = "";
             if (value === "C") return "";
             if (value === "÷") value = "/";
             if (value === "x") value = "*";
-            if (typeof value === "object") return valueToArray.splice(0, valueLength-1).join('');
             if (value === "=") {
                 if (prev === "") return "0";
                 try {
@@ -23,6 +15,14 @@ export function Button({ value, state }) {
                     return prev;
                 }
             };
+
+            const valueToArray = prev?.toString().split('');
+            const valueLength = valueToArray?.length;
+            const lastValue = valueToArray[valueLength-1];
+            const operators = [".", "+", "-", "*", "/", "%"];            
+
+            if (valueLength > 10 && value !== "C" && typeof value !== "object") return prev;
+            if (typeof value === "object") return valueToArray.splice(0, valueLength-1).join('');
 
             if (!(operators.includes(value) && operators.includes(lastValue))) return prev + value;
             else return valueToArray.splice(0, valueLength-1).join('') + value;
