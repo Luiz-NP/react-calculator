@@ -2,8 +2,8 @@ export function Button({ value, state }) {
 
     function changeValue() {
         state(prev => {
-            const valueToArray = prev.toString().split('');
-            const valueLength = valueToArray.length;
+            const valueToArray = prev?.toString().split('');
+            const valueLength = valueToArray?.length;
             const lastValue = valueToArray[valueLength-1];
             const operators = [".", "+", "-", "*", "/", "%"];            
 
@@ -14,6 +14,7 @@ export function Button({ value, state }) {
             if (value === "x") value = "*";
             if (typeof value === "object") return valueToArray.splice(0, valueLength-1).join('');
             if (value === "=") {
+                if (prev === "") return "0";
                 try {
                     return eval(prev);
                 } catch (error) {
