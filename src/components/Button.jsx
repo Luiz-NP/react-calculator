@@ -2,6 +2,7 @@ export function Button({ value, state }) {
 
     function changeValue() {
         state(prev => {
+            if (prev === "") return "0";
             const valueToArray = prev?.toString().split('');
             const valueLength = valueToArray?.length;
             const lastValue = valueToArray[valueLength-1];
