@@ -3,8 +3,7 @@ import { useState } from "react";
 import { Output } from "./Output";
 import { Button } from "./Button";
 
-import deleteButton from "../assets/deleteButton.svg";
-const img = <img className="w-10 ml-3" src={deleteButton} alt="<"/>;
+const img = <img className="w-10 ml-3" src="https://icon666.com/r/_thumb/hxz/hxz3oix6citf_64.png" alt="<"/>;
 
 export function Wrapper() {
     const [value, setValue] = useState("0");
